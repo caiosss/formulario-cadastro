@@ -1,21 +1,18 @@
 
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Imovel } from 'src/models/Imovel';
-import { Pagamento } from 'src/models/Pagamento';
-import { Proponente } from 'src/models/Proponente';
+import { Imovel, ImovelSchema } from './Imovel';
+import { Proponente, ProponenteSchema } from './Proponente';
+import { PagamentoSchema, Pagamento } from './Pagamento';
 
 @Schema()
 export class Formulario extends Document {
     
-    @Prop()
-    imovel: Imovel;
+   @Prop({ type: ImovelSchema }) imovel: Imovel;
 
-    @Prop()
-    proponente: Proponente;
+    @Prop({ type: PagamentoSchema }) pagamento: Pagamento;
 
-    @Prop()
-    pagamento: Pagamento;
+    @Prop({ type: ProponenteSchema }) proponente: Proponente;
 }
 
 export const FormularioSchema = SchemaFactory.createForClass(Formulario);

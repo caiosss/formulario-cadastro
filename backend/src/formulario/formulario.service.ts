@@ -6,7 +6,7 @@ import { Formulario } from 'src/schemas/Formulario';
 @Injectable()
 export class FormularioService {
     constructor(
-        @InjectModel('Formulario') private readonly formularioModel: Model<Formulario>
+        @InjectModel(Formulario.name) private readonly formularioModel: Model<Formulario>
     ) {}
 
     async create(data: any): Promise<Formulario> {

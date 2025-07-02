@@ -56,8 +56,26 @@ function FormularioProvider({ children }: PropsWithChildren) {
         setData((prev: any) => ({ ...prev, [section]: value }));
     }
 
-    const handleForm = () => {
-        console.log(data);
+    const handleForm = async () => {
+        console.log("Dados recebidos:", data);
+
+        try {
+            const response = await fetch("http://localhost:4000/formulario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+            if (!response.ok) {
+                throw new Error("Erro ao enviar formulário");
+            }
+            
+            console.log("Formulário enviado com sucesso!");
+        } catch (error) {
+            console.error(error);
+            
+        }
     }
 
     return (
