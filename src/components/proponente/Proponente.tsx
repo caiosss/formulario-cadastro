@@ -8,6 +8,7 @@ import { useFormularioContext } from "@/contexts/formulario.context";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { useEffect, useRef } from "react";
+import { Button } from "../ui/button";
 
 const proponenteSchema = z.object({
   nome: z.string().min(1, "Nome é obrigatório"),
@@ -97,73 +98,102 @@ export default function Proponente() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       ref={formRef}
-      className="grid grid-cols-1 gap-4 p-4 rounded-lg bg-white shadow-xl m-3"
+      className="max-w-2xl mx-auto bg-white shadow-2xl rounded-2xl p-8 mt-8 mb-8 border border-zinc-200 animate-fade-in"
     >
-      <span className="font-semibold text-zinc-500 text-xl">Proponente</span>
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Nome:</label>
+      <span className="block font-bold text-zinc-700 text-2xl mb-6 text-center tracking-tight">
+        Proponente
+      </span>
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Nome</label>
           <Controller
             name="nome"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Nome completo"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.nome && (
-            <span className="text-red-500 text-sm">{errors.nome.message}</span>
+            <span className="text-red-500 text-xs mt-1">
+              {errors.nome.message}
+            </span>
           )}
         </div>
-        <div className="col-span-6 flex flex-col gap-2">
-          <label className="font-medium">Data de Nascimento:</label>
+        <div className="col-span-6 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">
+            Data de Nascimento
+          </label>
           <Controller
             name="dataNascimento"
             control={control}
-            defaultValue=""
             render={({ field }) => (
-              <Input {...field} />
+              <Input
+                {...field}
+                placeholder="DD/MM/AAAA"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
             )}
           />
           {errors.dataNascimento && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.dataNascimento.message}
             </span>
           )}
         </div>
-        <div className="col-span-6 flex flex-col gap-2">
-          <label className="font-medium">RG:</label>
+        <div className="col-span-6 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">RG</label>
           <Controller
             name="rg"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="RG"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.rg && (
-            <span className="text-red-500 text-sm">{errors.rg.message}</span>
+            <span className="text-red-500 text-xs mt-1">
+              {errors.rg.message}
+            </span>
           )}
         </div>
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Órgão Expedidor:</label>
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">
+            Órgão Expedidor
+          </label>
           <Controller
             name="orgaoExpedidor"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Órgão Expedidor"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.orgaoExpedidor && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.orgaoExpedidor.message}
             </span>
           )}
         </div>
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Estado Civil:</label>
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">
+            Estado Civil
+          </label>
           <Controller
             name="estadoCivil"
             control={control}
-            defaultValue=""
             render={({ field }) => (
               <RadioGroup
-                className="flex flex-col flex-wrap gap-4"
+                className="flex flex-row flex-wrap gap-4"
                 value={field.value}
                 onValueChange={field.onChange}
               >
@@ -195,117 +225,173 @@ export default function Proponente() {
             )}
           />
           {errors.estadoCivil && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.estadoCivil.message}
             </span>
           )}
         </div>
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Profissão:</label>
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Profissão</label>
           <Controller
             name="profissao"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Profissão"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.profissao && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.profissao.message}
             </span>
           )}
         </div>
-        <div className="col-span-6 flex flex-col gap-2">
-          <label className="font-medium">CPF:</label>
+        <div className="col-span-6 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">CPF</label>
           <Controller
             name="cpf"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input  {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="CPF"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.cpf && (
-            <span className="text-red-500 text-sm">{errors.cpf.message}</span>
+            <span className="text-red-500 text-xs mt-1">
+              {errors.cpf.message}
+            </span>
           )}
         </div>
-        <div className="col-span-6 flex flex-col gap-2">
-          <label className="font-medium">CEP:</label>
+        <div className="col-span-6 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">CEP</label>
           <Controller
             name="cep"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="CEP"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.cep && (
-            <span className="text-red-500 text-sm">{errors.cep.message}</span>
+            <span className="text-red-500 text-xs mt-1">
+              {errors.cep.message}
+            </span>
           )}
         </div>
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Bairro:</label>
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Bairro</label>
           <Controller
             name="bairro"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Bairro"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.bairro && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.bairro.message}
             </span>
           )}
         </div>
-        <div className="col-span-6 flex flex-col gap-2">
-          <label className="font-medium">Cidade:</label>
+        <div className="col-span-6 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Cidade</label>
           <Controller
             name="cidade"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Cidade"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.cidade && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.cidade.message}
             </span>
           )}
         </div>
-        <div className="col-span-6 flex flex-col gap-2">
-          <label className="font-medium">Estado:</label>
+        <div className="col-span-6 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Estado</label>
           <Controller
             name="estado"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Estado"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.estado && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.estado.message}
             </span>
           )}
         </div>
-        <div className="col-span-6 flex flex-col gap-2">
-          <label className="font-medium">Email:</label>
+        <div className="col-span-6 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Email</label>
           <Controller
             name="email"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input type="email" {...field} />}
+            render={({ field }) => (
+              <Input
+                type="email"
+                {...field}
+                placeholder="Email"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.email && (
-            <span className="text-red-500 text-sm">{errors.email.message}</span>
+            <span className="text-red-500 text-xs mt-1">
+              {errors.email.message}
+            </span>
           )}
         </div>
-        <div className="col-span-6 flex flex-col gap-2">
-          <label className="font-medium">Whatsapp:</label>
+        <div className="col-span-6 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Whatsapp</label>
           <Controller
             name="telefone"
             control={control}
-            defaultValue=""
-            render={({ field }) => <Input type="tel" {...field} />}
+            render={({ field }) => (
+              <Input
+                type="tel"
+                {...field}
+                placeholder="Whatsapp"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
           />
           {errors.telefone && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.telefone.message}
             </span>
           )}
         </div>
+      </div>
+      <div className="flex justify-end mt-8">
+        <Button
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow transition-all duration-150"
+        >
+          Salvar Proponente
+        </Button>
       </div>
     </form>
   );

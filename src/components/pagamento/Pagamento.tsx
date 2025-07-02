@@ -2,16 +2,14 @@
 
 import z from "zod";
 import { Input } from "../ui/input";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFormularioContext } from "@/contexts/formulario.context";
 import { useEffect, useRef } from "react";
 
 const pagamentoSchema = z.object({
-  valorTotal: z.string().min(0, "Valor total deve ser maior ou igual a zero"),
-  valorEntrada: z
-    .string()
-    .min(0, "Valor de entrada deve ser maior ou igual a zero"),
+  valorTotal: z.string().min(1, "Valor total é obrigatório"),
+  valorEntrada: z.string().min(1, "Valor de entrada é obrigatório"),
   parcelas: z.string().min(1, "Parcelas é obrigatório"),
   balao: z.string().min(1, "Balão é obrigatório"),
   chaves: z.string().min(1, "Chaves é obrigatório"),
@@ -24,21 +22,21 @@ export default function Pagamento() {
   const { data, updateSection } = useFormularioContext();
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<PagamentoForm>({
     resolver: zodResolver(pagamentoSchema),
   });
 
-  const onSubmit = (data: PagamentoForm) => {
+  const onSubmit = (formData: PagamentoForm) => {
     updateSection("pagamento", {
-      valorTotal: +data.valorTotal,
-      valorEntrada: +data.valorEntrada,
-      parcelas: data.parcelas,
-      balao: data.balao,
-      chaves: data.chaves,
-      financiamento: data.financiamento,
+      valorTotal: +formData.valorTotal,
+      valorEntrada: +formData.valorEntrada,
+      parcelas: formData.parcelas,
+      balao: formData.balao,
+      chaves: formData.chaves,
+      financiamento: formData.financiamento,
     });
   };
 
@@ -58,70 +56,140 @@ export default function Pagamento() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       ref={formRef}
-      className="grid grid-cols-1 gap-4 p-4 rounded-lg bg-white shadow-xl m-3"
+      className="max-w-2xl mx-auto bg-white shadow-2xl rounded-2xl p-8 mt-8 mb-8 border border-zinc-200 animate-fade-in"
     >
-      <span className="font-semibold text-zinc-500 text-xl">
+      <span className="block font-bold text-zinc-700 text-2xl mb-6 text-center tracking-tight">
         Condições de Pagamento
       </span>
-
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Valor Total: </label>
-          <Input {...register("valorTotal")}/>
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">
+            Valor Total
+          </label>
+          <Controller
+            name="valorTotal"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Ex: 100000"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
+          />
           {errors.valorTotal && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.valorTotal.message}
             </span>
           )}
         </div>
-
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Valor de Entrada:</label>
-          <Input {...register("valorEntrada")} />
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">
+            Valor de Entrada
+          </label>
+          <Controller
+            name="valorEntrada"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Ex: 20000"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
+          />
           {errors.valorEntrada && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.valorEntrada.message}
             </span>
           )}
         </div>
-
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Parcelas:</label>
-          <Input {...register("parcelas")} />
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Parcelas</label>
+          <Controller
+            name="parcelas"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Ex: 60"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
+          />
           {errors.parcelas && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.parcelas.message}
             </span>
           )}
         </div>
-
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Balão:</label>
-          <Input {...register("balao")} />
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Balão</label>
+          <Controller
+            name="balao"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Ex: 10000"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
+          />
           {errors.balao && (
-            <span className="text-red-500 text-sm">{errors.balao.message}</span>
+            <span className="text-red-500 text-xs mt-1">
+              {errors.balao.message}
+            </span>
           )}
         </div>
-
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Chaves:</label>
-          <Input {...register("chaves")} />
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">Chaves</label>
+          <Controller
+            name="chaves"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Ex: 5000"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
+          />
           {errors.chaves && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.chaves.message}
             </span>
           )}
         </div>
-
-        <div className="col-span-12 flex flex-col gap-2">
-          <label className="font-medium">Financiamento:</label>
-          <Input {...register("financiamento")} />
+        <div className="col-span-12 flex flex-col gap-1">
+          <label className="font-semibold text-zinc-600 mb-1">
+            Financiamento
+          </label>
+          <Controller
+            name="financiamento"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Ex: 30000"
+                className="focus:ring-2 focus:ring-blue-400"
+              />
+            )}
+          />
           {errors.financiamento && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-xs mt-1">
               {errors.financiamento.message}
             </span>
           )}
         </div>
+      </div>
+      <div className="flex justify-end mt-8">
+        <button
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow transition-all duration-150"
+        >
+          Salvar Pagamento
+        </button>
       </div>
     </form>
   );
