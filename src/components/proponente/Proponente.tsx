@@ -47,7 +47,6 @@ export default function Proponente() {
   };
 
   const {
-    register,
     handleSubmit,
     setValue,
     watch,
@@ -101,46 +100,61 @@ export default function Proponente() {
       className="grid grid-cols-1 gap-4 p-4 rounded-lg bg-white shadow-xl m-3"
     >
       <span className="font-semibold text-zinc-500 text-xl">Proponente</span>
-
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12 flex flex-col gap-2">
           <label className="font-medium">Nome:</label>
-          <Input {...register("nome")} />
+          <Controller
+            name="nome"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...field} />}
+          />
           {errors.nome && (
             <span className="text-red-500 text-sm">{errors.nome.message}</span>
           )}
         </div>
-
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">Data de Nascimento:</label>
-          <Input {...register("dataNascimento")} mask="00/00/0000" />
+          <Controller
+            name="dataNascimento"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <Input {...field} />
+            )}
+          />
           {errors.dataNascimento && (
             <span className="text-red-500 text-sm">
               {errors.dataNascimento.message}
             </span>
           )}
         </div>
-
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">RG:</label>
-          <Input {...register("rg")} mask="00000000-0" />
+          <Controller
+            name="rg"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...field} />}
+          />
           {errors.rg && (
             <span className="text-red-500 text-sm">{errors.rg.message}</span>
           )}
         </div>
-
         <div className="col-span-12 flex flex-col gap-2">
-          <label {...register("orgaoExpedidor")} className="font-medium">
-            Órgão Expedidor:
-          </label>
-          <Input />
+          <label className="font-medium">Órgão Expedidor:</label>
+          <Controller
+            name="orgaoExpedidor"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...field} />}
+          />
           {errors.orgaoExpedidor && (
             <span className="text-red-500 text-sm">
               {errors.orgaoExpedidor.message}
             </span>
           )}
         </div>
-
         <div className="col-span-12 flex flex-col gap-2">
           <label className="font-medium">Estado Civil:</label>
           <Controller
@@ -186,77 +200,105 @@ export default function Proponente() {
             </span>
           )}
         </div>
-
         <div className="col-span-12 flex flex-col gap-2">
           <label className="font-medium">Profissão:</label>
-          <Input {...register("profissao")} />
+          <Controller
+            name="profissao"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...field} />}
+          />
           {errors.profissao && (
             <span className="text-red-500 text-sm">
               {errors.profissao.message}
             </span>
           )}
         </div>
-
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">CPF:</label>
-          <Input {...register("cpf")} mask="000.000.000-00" />
+          <Controller
+            name="cpf"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input  {...field} />}
+          />
           {errors.cpf && (
             <span className="text-red-500 text-sm">{errors.cpf.message}</span>
           )}
         </div>
-
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">CEP:</label>
-          <Input {...register("cep")} />
+          <Controller
+            name="cep"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...field} />}
+          />
           {errors.cep && (
             <span className="text-red-500 text-sm">{errors.cep.message}</span>
           )}
         </div>
-
         <div className="col-span-12 flex flex-col gap-2">
           <label className="font-medium">Bairro:</label>
-          <Input {...register("bairro")} />
+          <Controller
+            name="bairro"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...field} />}
+          />
           {errors.bairro && (
             <span className="text-red-500 text-sm">
               {errors.bairro.message}
             </span>
           )}
         </div>
-
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">Cidade:</label>
-          <Input {...register("cidade")} />
+          <Controller
+            name="cidade"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...field} />}
+          />
           {errors.cidade && (
             <span className="text-red-500 text-sm">
               {errors.cidade.message}
             </span>
           )}
         </div>
-
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">Estado:</label>
-          <Input {...register("estado")} />
+          <Controller
+            name="estado"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...field} />}
+          />
           {errors.estado && (
             <span className="text-red-500 text-sm">
               {errors.estado.message}
             </span>
           )}
         </div>
-
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">Email:</label>
-          <Input {...register("email")} type="email" />
+          <Controller
+            name="email"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input type="email" {...field} />}
+          />
           {errors.email && (
             <span className="text-red-500 text-sm">{errors.email.message}</span>
           )}
         </div>
-
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">Whatsapp:</label>
-          <Input
-            {...register("telefone")}
-            mask="+55 (00) 00000-0000"
-            type="tel"
+          <Controller
+            name="telefone"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input type="tel" {...field} />}
           />
           {errors.telefone && (
             <span className="text-red-500 text-sm">
