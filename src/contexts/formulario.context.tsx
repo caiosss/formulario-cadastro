@@ -1,7 +1,9 @@
+'use client';
+
 import { ImovelData } from "@/interfaces/ImovelData";
 import { PagamentoData } from "@/interfaces/PagamentoData";
 import { ProponenteData } from "@/interfaces/ProponenteData";
-import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState } from "react";
+import { createContext, Dispatch, PropsWithChildren, SetStateAction, useContext, useState } from "react";
 
 export interface FormularioData {
     proponente: ProponenteData;
@@ -59,3 +61,7 @@ function FormularioProvider({ children }: PropsWithChildren) {
         </FormularioContext.Provider>
     );
 }
+
+const useFormularioContext = () => useContext(FormularioContext);
+
+export { FormularioProvider, useFormularioContext, FormularioContext };

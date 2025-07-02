@@ -19,7 +19,7 @@ export default function Proponente() {
 
         <div className="col-span-6 flex flex-col gap-2">
           <label className="font-medium">Data de Nascimento:</label>
-          <Input type="date" />
+          <Input mask="00/00/0000"/>
         </div>
 
         <div className="col-span-6 flex flex-col gap-2">
