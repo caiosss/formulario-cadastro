@@ -15,6 +15,7 @@ interface FormularioContextType {
     data: FormularioData;
     setData: Dispatch<SetStateAction<FormularioData>>;
     updateSection: <K extends keyof FormularioData>(section: K, value: FormularioData[K]) => void;
+    handleForm: () => void;
 }
 
 const FormularioContext = createContext({} as FormularioContextType);
@@ -53,10 +54,14 @@ function FormularioProvider({ children }: PropsWithChildren) {
 
     const updateSection = <K extends keyof FormularioData>(section: K, value: FormularioData[K]) => {
         setData((prev: any) => ({ ...prev, [section]: value }));
-    };
+    }
+
+    const handleForm = () => {
+        console.log(data);
+    }
 
     return (
-        <FormularioContext.Provider value={{ data, setData, updateSection }}>
+        <FormularioContext.Provider value={{ data, setData, updateSection, handleForm }}>
             {children}
         </FormularioContext.Provider>
     );
