@@ -23,9 +23,7 @@ let FormularioService = class FormularioService {
         this.formularioModel = formularioModel;
     }
     async create(data) {
-        console.log('Dados recebidos:', data);
         const formulario = new this.formularioModel(data);
-        console.log('Formulario criado:', formulario);
         return formulario.save();
     }
 };
