@@ -45,7 +45,6 @@ export default function ListarClientes() {
       .then((res) => res.json())
       .then((data) => {
         setClientes(Array.isArray(data) ? data : []);
-        // Para total de páginas, idealmente a API retorna o total de registros, mas aqui vamos estimar:
         fetch("http://localhost:4000/formulario/all")
           .then((res) => res.json())
           .then((all) => {
@@ -75,7 +74,7 @@ export default function ListarClientes() {
 
         <section className="w-full max-w-2xl flex items-center justify-between bg-white rounded-xl shadow p-4 mb-6">
           <Input
-            placeholder="Buscar por nome ou ID..."
+            placeholder="Buscar por nome"
             className="w-full max-w-xs border-blue-200 focus:ring-2 focus:ring-blue-400"
             onChange={(e) => setNomeBusca(e.target.value)}
           />
@@ -136,7 +135,7 @@ export default function ListarClientes() {
                     </TableCell>
                     <TableCell className="py-3 px-4 text-center">
                       <Button className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white cursor-pointer rounded-lg shadow font-medium transition-all duration-150">
-                        <Printer size={20} />
+                        <Download size={20} />
                       </Button>
 
                       <Editar id={cliente._id}>
