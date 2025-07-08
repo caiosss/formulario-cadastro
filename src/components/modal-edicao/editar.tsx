@@ -138,7 +138,7 @@ export default function Editar(props: EditarProps) {
     return (
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>{props.children}</DialogTrigger>
-            <DialogContent className="overflow-y-scroll">
+            <DialogContent className="max-h-[90vh] w-full max-w-3xl overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle className="text-left">
                         Edição de Cliente
@@ -202,11 +202,11 @@ export default function Editar(props: EditarProps) {
                         <div className="col-span-2 text-blue-700 font-semibold text-lg mt-6 mb-2">Condições de Pagamento</div>
                         <div>
                             <label className="block text-zinc-600 font-medium mb-1">Valor Total</label>
-                            <Input name="valorTotal" value={form.valorTotal} onChange={handleChange} className="w-full" type="number" />
+                            <Input name="valorTotal" value={form.valorTotal} onChange={handleChange} className="w-full" />
                         </div>
                         <div>
                             <label className="block text-zinc-600 font-medium mb-1">Valor de Entrada</label>
-                            <Input name="valorEntrada" value={form.valorEntrada} onChange={handleChange} className="w-full" type="number" />
+                            <Input name="valorEntrada" value={form.valorEntrada} onChange={handleChange} className="w-full" />
                         </div>
                         <div>
                             <label className="block text-zinc-600 font-medium mb-1">Parcelas</label>

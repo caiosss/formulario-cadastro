@@ -17,7 +17,7 @@ export default function Excluir(props: ExcluirProps) {
             if (response.ok) {
                 setTimeout(() => {
                     window.location.reload();
-                }, 2000)
+                }, 1000)
             } 
         })
         .catch(error => console.error("Erro de rede:", error));
