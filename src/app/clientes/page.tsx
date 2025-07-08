@@ -12,8 +12,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Download, Printer } from "lucide-react";
+import { Download, Edit, Printer, X } from "lucide-react";
 import Menu from "@/components/menu/Menu";
+import Excluir from "@/components/modal-excluir/excluir";
+import Editar from "@/components/modal-edicao/editar";
 
 interface Cliente {
   _id: string;
@@ -112,9 +114,19 @@ export default function ListarClientes() {
                       {cliente.proponente?.nome || "-"}
                     </TableCell>
                     <TableCell className="py-3 px-4 text-center">
-                      <Button className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white cursor-pointer rounded-lg shadow font-medium transition-all duration-150">
+                      <Button className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white cursor-pointer rounded-lg shadow-xl font-medium transition-all duration-150">
                         <Download size={20} />
                       </Button>
+                      <Editar id={cliente._id}>
+                        <Button className="ml-2 px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer rounded-lg shadow-xl font-medium transition-all duration-150">
+                          <Edit size={20} />
+                        </Button>
+                      </Editar>
+                      <Excluir id={cliente._id}>
+                        <Button className="ml-2 px-3 py-1 bg-red-500 hover:bg-red-600 text-white cursor-pointer rounded-lg shadow-xl font-medium transition-all duration-150">
+                          <X size={20} />
+                        </Button>
+                      </Excluir>
                     </TableCell>
                   </TableRow>
                 ))

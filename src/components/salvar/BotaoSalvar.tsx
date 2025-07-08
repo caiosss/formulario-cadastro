@@ -2,6 +2,7 @@
 
 import { useFormularioContext } from "@/contexts/formulario.context";
 import { Button } from "../ui/button";
+import Conclusao from "../modal-concluido/conclusao";
 
 export default function BotaoSalvar() {
   const { handleForm } = useFormularioContext();
@@ -16,13 +17,15 @@ export default function BotaoSalvar() {
 
   return (
     <div className="flex justify-center">
-      <Button
-        type="button"
-        onClick={handleClick}
-        className="w-1/2 bg-blue-500 hover:bg-blue-600 hover:cursor-pointer text-white text-lg font-semibold py-2 px-4 rounded mb-4"
-      >
-        Salvar
-      </Button>
+      <Conclusao>
+        <Button
+          type="button"
+          onClick={handleClick}
+          className="w-1/2 bg-blue-500 hover:bg-blue-600 hover:cursor-pointer text-white text-lg font-semibold py-2 px-4 rounded mb-4"
+        >
+          Salvar
+        </Button>
+      </Conclusao>
     </div>
   );
 }

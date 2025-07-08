@@ -32,6 +32,9 @@ let FormularioService = class FormularioService {
     async findByNome(nome) {
         return this.formularioModel.find({ 'proponente.nome': new RegExp(nome, 'i') }).exec();
     }
+    async deleteById(id) {
+        return this.formularioModel.deleteOne({ _id: id }).exec();
+    }
 };
 exports.FormularioService = FormularioService;
 exports.FormularioService = FormularioService = __decorate([

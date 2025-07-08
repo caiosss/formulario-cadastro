@@ -29,6 +29,9 @@ let FormularioController = class FormularioController {
     async findByNome(nome) {
         return this.formularioService.findByNome(nome);
     }
+    async deleteById(id) {
+        return this.formularioService.deleteById(id);
+    }
 };
 exports.FormularioController = FormularioController;
 __decorate([
@@ -51,6 +54,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], FormularioController.prototype, "findByNome", null);
+__decorate([
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], FormularioController.prototype, "deleteById", null);
 exports.FormularioController = FormularioController = __decorate([
     (0, common_1.Controller)('formulario'),
     __metadata("design:paramtypes", [formulario_service_1.FormularioService])

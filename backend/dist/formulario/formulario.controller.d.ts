@@ -5,4 +5,5 @@ export declare class FormularioController {
     create(data: any): Promise<import("../schemas/Formulario").Formulario>;
     findAll(): Promise<import("../schemas/Formulario").Formulario[]>;
     findByNome(nome: string): Promise<import("../schemas/Formulario").Formulario[]>;
+    deleteById(id: string): Promise<any>;
 }

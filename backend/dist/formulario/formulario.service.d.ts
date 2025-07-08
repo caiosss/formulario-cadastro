@@ -6,4 +6,5 @@ export declare class FormularioService {
     create(data: any): Promise<Formulario>;
     findAll(): Promise<Formulario[]>;
     findByNome(nome: string): Promise<Formulario[]>;
+    deleteById(id: string): Promise<any>;
 }
