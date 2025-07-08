@@ -41,6 +41,10 @@ let FormularioService = class FormularioService {
     async updateById(id, data) {
         return this.formularioModel.findByIdAndUpdate(id, data, { new: true }).exec();
     }
+    async findByPage(pagina, tamanho) {
+        const skip = (pagina - 1) * tamanho;
+        return this.formularioModel.find().skip(skip).limit(tamanho).exec();
+    }
 };
 exports.FormularioService = FormularioService;
 exports.FormularioService = FormularioService = __decorate([

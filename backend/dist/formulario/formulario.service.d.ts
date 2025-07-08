@@ -9,4 +9,5 @@ export declare class FormularioService {
     findById(id: string): Promise<Formulario | null>;
     deleteById(id: string): Promise<any>;
     updateById(id: string, data: any): Promise<Formulario | null>;
+    findByPage(pagina: number, tamanho: number): Promise<Formulario[]>;
 }

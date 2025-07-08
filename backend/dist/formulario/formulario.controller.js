@@ -32,6 +32,9 @@ let FormularioController = class FormularioController {
     async findById(id) {
         return this.formularioService.findById(id);
     }
+    async findByPage(pagina, tamanho) {
+        return this.formularioService.findByPage(pagina, tamanho);
+    }
     async updateById(id, data) {
         return this.formularioService.updateById(id, data);
     }
@@ -67,6 +70,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], FormularioController.prototype, "findById", null);
+__decorate([
+    (0, common_1.Get)("pagina/:pagina/:tamanho"),
+    __param(0, (0, common_1.Param)('pagina')),
+    __param(1, (0, common_1.Param)('tamanho')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], FormularioController.prototype, "findByPage", null);
 __decorate([
     (0, common_1.Put)(":id"),
     __param(0, (0, common_1.Param)('id')),

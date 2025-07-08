@@ -34,4 +34,9 @@ export class FormularioService {
     async updateById(id: string, data: any): Promise<Formulario | null> {
         return this.formularioModel.findByIdAndUpdate(id, data, { new: true }).exec();
     }
+
+    async findByPage(pagina: number, tamanho: number): Promise<Formulario[]> {
+        const skip = (pagina - 1) * tamanho;
+        return this.formularioModel.find().skip(skip).limit(tamanho).exec();
+    }
 }

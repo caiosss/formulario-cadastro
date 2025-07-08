@@ -26,6 +26,11 @@ export class FormularioController {
     return this.formularioService.findById(id);
   }
 
+  @Get("pagina/:pagina/:tamanho")
+  async findByPage(@Param('pagina') pagina: number, @Param('tamanho') tamanho: number) {
+    return this.formularioService.findByPage(pagina, tamanho);
+  }
+
   @Put(":id")
   async updateById(@Param('id') id: string, @Body() data: any) {
     return this.formularioService.updateById(id, data);
