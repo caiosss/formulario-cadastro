@@ -39,7 +39,7 @@ export default function ListarClientes() {
   }, []);
 
   function buscarUsuario(nome: string) {
-    fetch(`http://localhost:4000/formulario/${nome}`)
+    fetch(`http://localhost:4000/formulario/nome/${nome}`)
       .then((res) => res.json())
       .then((data) => {
         setClientes(Array.isArray(data) ? data : []);
@@ -117,11 +117,13 @@ export default function ListarClientes() {
                       <Button className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white cursor-pointer rounded-lg shadow-xl font-medium transition-all duration-150">
                         <Download size={20} />
                       </Button>
+
                       <Editar id={cliente._id}>
                         <Button className="ml-2 px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer rounded-lg shadow-xl font-medium transition-all duration-150">
                           <Edit size={20} />
                         </Button>
                       </Editar>
+
                       <Excluir id={cliente._id}>
                         <Button className="ml-2 px-3 py-1 bg-red-500 hover:bg-red-600 text-white cursor-pointer rounded-lg shadow-xl font-medium transition-all duration-150">
                           <X size={20} />

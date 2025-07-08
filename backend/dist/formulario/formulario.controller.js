@@ -29,6 +29,12 @@ let FormularioController = class FormularioController {
     async findByNome(nome) {
         return this.formularioService.findByNome(nome);
     }
+    async findById(id) {
+        return this.formularioService.findById(id);
+    }
+    async updateById(id, data) {
+        return this.formularioService.updateById(id, data);
+    }
     async deleteById(id) {
         return this.formularioService.deleteById(id);
     }
@@ -48,12 +54,27 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FormularioController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(":nome"),
+    (0, common_1.Get)("nome/:nome"),
     __param(0, (0, common_1.Param)('nome')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], FormularioController.prototype, "findByNome", null);
+__decorate([
+    (0, common_1.Get)("id/:id"),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], FormularioController.prototype, "findById", null);
+__decorate([
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], FormularioController.prototype, "updateById", null);
 __decorate([
     (0, common_1.Delete)(":id"),
     __param(0, (0, common_1.Param)('id')),
