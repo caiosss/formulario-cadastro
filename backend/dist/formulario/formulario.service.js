@@ -26,6 +26,12 @@ let FormularioService = class FormularioService {
         const formulario = new this.formularioModel(data);
         return formulario.save();
     }
+    async findAll() {
+        return this.formularioModel.find().exec();
+    }
+    async findByNome(nome) {
+        return this.formularioModel.find({ 'proponente.nome': new RegExp(nome, 'i') }).exec();
+    }
 };
 exports.FormularioService = FormularioService;
 exports.FormularioService = FormularioService = __decorate([

@@ -13,4 +13,12 @@ export class FormularioService {
         const formulario = new this.formularioModel(data);
         return formulario.save();
     }
+
+    async findAll(): Promise<Formulario[]> {
+        return this.formularioModel.find().exec();
+    }
+
+    async findByNome(nome: string): Promise<Formulario[]> {
+        return this.formularioModel.find({ 'proponente.nome': new RegExp(nome, 'i') }).exec();
+    }
 }
